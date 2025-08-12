@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"l0/iternal/config"
-	"l0/models"
+	"github.com/unkabas/wb-L0/iternal/config"
+	"github.com/unkabas/wb-L0/models"
 	"log"
 )
 

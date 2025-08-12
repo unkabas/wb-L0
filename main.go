@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"l0/cmd"
-	"l0/iternal/config"
+	"github.com/unkabas/wb-L0/cmd"
+	"github.com/unkabas/wb-L0/iternal/config"
 )
 
 var migrate = flag.Bool("m", false, "migration")
