@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/confluentinc/confluent-kafka-go/v2/kafka"
+	"github.com/unkabas/wb-L0/internal/cache"
 	"github.com/unkabas/wb-L0/models"
 	"gorm.io/gorm"
 	"log"
@@ -15,9 +16,10 @@ type Consumer struct {
 	consumer *kafka.Consumer
 	db       *gorm.DB
 	stopChan chan struct{}
+	cache    *cache.Cache
 }
 
-func NewConsumer(address []string, topic, groupID string, db *gorm.DB) (*Consumer, error) {
+func NewConsumer(address []string, topic, groupID string, db *gorm.DB, cache *cache.Cache) (*Consumer, error) {
 	config := &kafka.ConfigMap{
 		"bootstrap.servers": strings.Join(address, ","),
 		"group.id":          groupID,
@@ -38,6 +40,7 @@ func NewConsumer(address []string, topic, groupID string, db *gorm.DB) (*Consume
 		consumer: c,
 		db:       db,
 		stopChan: make(chan struct{}),
+		cache:    cache,
 	}, nil
 }
 
@@ -133,6 +136,11 @@ func (c *Consumer) processMessage(data []byte) (err error) {
 
 		log.Printf("Successfully saved order %s\n", order.OrderUID)
 		return nil
+
+		c.cache.Set(order)
+		log.Printf("Successfully saved order %s and added to cache\n", order.OrderUID)
+		return nil
+
 	}
 	return fmt.Errorf("create order failed after %d attempts, order_uid: %s", maxRetries, order.OrderUID)
 }

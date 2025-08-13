@@ -11,8 +11,10 @@ const (
 	topic = "order"
 )
 
+var address = []string{"localhost:9091", "localhost:9092", "localhost:9093"}
+
 func main() {
-	p, err := k.NewProducer([]string{"localhost:9091", "localhost:9092", "localhost:9093"})
+	p, err := k.NewProducer(address)
 	if err != nil {
 		log.Fatalf("Failed to create producer: %v", err)
 	}

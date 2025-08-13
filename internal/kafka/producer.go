@@ -11,6 +11,7 @@ const (
 	flushTimout = 5000
 )
 
+// на всякий случай если что то пойдет не так
 var errUnknownType = errors.New("unknown event type")
 
 type Producer struct {
@@ -19,6 +20,7 @@ type Producer struct {
 
 func NewProducer(address []string) (*Producer, error) {
 	conf := &kafka.ConfigMap{
+		//объединение всех адресов брокеров
 		"bootstrap.servers": strings.Join(address, ","),
 	}
 	p, err := kafka.NewProducer(conf)
