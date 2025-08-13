@@ -61,44 +61,80 @@ func (c *Consumer) Start() {
 			}
 
 			if err := c.processMessage(msg.Value); err != nil {
-				log.Printf("Failed to process message: %v", err)
+				log.Printf("Failed to process message %q: %v", string(msg.Value[:50]), err)
 				continue
 			}
 
 			if _, err := c.consumer.CommitMessage(msg); err != nil {
 				log.Printf("Failed to commit offset: %v", err)
 			} else {
-				log.Println("Message committed successfully")
+				log.Printf("Message committed successfully for message %q\n", string(msg.Value[:50]))
 			}
 		}
 	}
 }
 
-func (c *Consumer) processMessage(data []byte) error {
-	var order models.Order
-	if err := json.Unmarshal(data, &order); err != nil {
-		return fmt.Errorf("unmarshal error: %w", err)
-	}
-
-	tx := c.db.Begin()
+func (c *Consumer) processMessage(data []byte) (err error) {
+	// Защита от паник
 	defer func() {
 		if r := recover(); r != nil {
-			tx.Rollback()
-			log.Printf("Panic during transaction: %v", r)
+			log.Printf("Panic in process Message: %v, message: %q", r, string(data))
+			err = fmt.Errorf("panic in processMessage: %v", r)
 		}
 	}()
 
-	if err := tx.Create(&order).Error; err != nil {
-		tx.Rollback()
-		return fmt.Errorf("create order failed: %w", err)
+	// Парсинг JSON
+	var order models.Order
+	if err := json.Unmarshal(data, &order); err != nil {
+		return fmt.Errorf("unmarshal error for message %q: %w", string(data), err)
 	}
 
-	if err := tx.Commit().Error; err != nil {
-		return fmt.Errorf("commit failed: %w", err)
+	// Валидация ключевых полей
+	if order.OrderUID == "" {
+		return fmt.Errorf("invalid order: order_uid is empty, message: %q", string(data))
+	}
+	if order.Delivery.Name == "" || order.Delivery.Phone == "" {
+		return fmt.Errorf("invalid order: delivery name or phone is empty, order_uid: %s", order.OrderUID)
+	}
+	if len(order.Items) == 0 {
+		return fmt.Errorf("invalid order: no items, order_uid: %s", order.OrderUID)
+	}
+	if order.Payment.Transaction == "" {
+		return fmt.Errorf("invalid order: payment transaction is empty, order_uid: %s", order.OrderUID)
 	}
 
-	log.Printf("Successfully saved order %s\n", order.OrderUID)
-	return nil
+	// Retry-логика для сохранения в БД
+	const maxRetries = 3
+	for attempt := 1; attempt <= maxRetries; attempt++ {
+		tx := c.db.Begin()
+		// Откат при панике внутри транзакции
+		defer func() {
+			if r := recover(); r != nil {
+				tx.Rollback()
+				log.Printf("Panic during transaction for order %s, attempt %d: %v", order.OrderUID, attempt, r)
+			}
+		}()
+
+		// Сохранение заказа
+		if err := tx.Create(&order).Error; err != nil {
+			tx.Rollback()
+			if attempt == maxRetries {
+				return fmt.Errorf("create order failed after %d attempts, order_uid: %s: %w", maxRetries, order.OrderUID, err)
+			}
+			log.Printf("Attempt %d failed for order %s: %v, retrying...", attempt, order.OrderUID, err)
+			time.Sleep(time.Second * time.Duration(attempt))
+			continue
+		}
+
+		// Коммит транзакции
+		if err := tx.Commit().Error; err != nil {
+			return fmt.Errorf("commit failed for order %s: %w", order.OrderUID, err)
+		}
+
+		log.Printf("Successfully saved order %s\n", order.OrderUID)
+		return nil
+	}
+	return fmt.Errorf("create order failed after %d attempts, order_uid: %s", maxRetries, order.OrderUID)
 }
 
 func (c *Consumer) Stop() {

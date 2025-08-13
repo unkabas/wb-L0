@@ -26,7 +26,7 @@ func main() {
 			"entry":        "WBIL",
 			"delivery": map[string]interface{}{
 				"name":    "Test Testov",
-				"phone":   "+9720000000",
+				"phone":   "34789237598327",
 				"zip":     "2639809",
 				"city":    "Kiryat Mozkin",
 				"address": "Ploshad Mira 15",
