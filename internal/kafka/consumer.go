@@ -63,15 +63,24 @@ func (c *Consumer) Start() {
 				continue
 			}
 
+			// Проверка пустого сообщения
+			if len(msg.Value) == 0 {
+				log.Println("We got empty message, continue")
+				if _, err := c.consumer.CommitMessage(msg); err != nil {
+					log.Printf("Error commited empty message: %v", err)
+				}
+				continue
+			}
+
 			if err := c.processMessage(msg.Value); err != nil {
-				log.Printf("Failed to process message %q: %v", string(msg.Value[:50]), err)
+				log.Printf("Failed to process message %v", err)
 				continue
 			}
 
 			if _, err := c.consumer.CommitMessage(msg); err != nil {
 				log.Printf("Failed to commit offset: %v", err)
 			} else {
-				log.Printf("Message committed successfully for message %q\n", string(msg.Value[:50]))
+				log.Printf("Message committed successfully for message\n")
 			}
 		}
 	}
