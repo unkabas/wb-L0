@@ -2,8 +2,8 @@ package models
 
 // Модель доставки
 type Delivery struct {
-	ID      uint   `gorm:"primaryKey" json:"-"`
-	OrderID string `json:"-"` // Внешний ключ
+	ID      uint   `gorm:"primaryKey;autoIncrement" json:"-"`
+	OrderID string `gorm:"not null" json:"-"`
 	Name    string `json:"name"`
 	Phone   string `json:"phone"`
 	Zip     string `json:"zip"`

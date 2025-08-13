@@ -2,8 +2,8 @@ package models
 
 // Модель элемента заказа
 type Item struct {
-	ID          uint   `gorm:"primaryKey" json:"-"`
-	OrderID     string `json:"-"` // Внешний ключ
+	ID          uint   `gorm:"primaryKey;autoIncrement" json:"-"`
+	OrderID     string `gorm:"not null" json:"-"`
 	ChrtID      int    `json:"chrt_id"`
 	TrackNumber string `json:"track_number"`
 	Price       int    `json:"price"`

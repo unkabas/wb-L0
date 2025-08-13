@@ -1,7 +1,7 @@
-package cmd
+package migration
 
 import (
-	"github.com/unkabas/wb-L0/iternal/config"
+	"github.com/unkabas/wb-L0/internal/config"
 	"github.com/unkabas/wb-L0/models"
 	"log"
 )

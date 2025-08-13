@@ -3,7 +3,6 @@ package config
 import (
 	"github.com/joho/godotenv"
 	"log"
-	"os"
 )
 
 func LoadEnvs() {
@@ -11,5 +10,5 @@ func LoadEnvs() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	log.Println("Loaded .env file:", os.Getenv("DB_URL"))
+
 }

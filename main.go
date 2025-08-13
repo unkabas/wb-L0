@@ -2,8 +2,7 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"github.com/unkabas/wb-L0/cmd"
+	"github.com/unkabas/wb-L0/cmd/migration"
 	"github.com/unkabas/wb-L0/iternal/config"
 )
 
@@ -15,8 +14,7 @@ func init() {
 }
 func main() {
 	flag.Parse()
-	fmt.Println("go")
 	if *migrate {
-		cmd.Migration()
+		migration.Migration()
 	}
 }
