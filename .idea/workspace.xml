@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c549d32d-cd32-4132-b6b1-94d8f0bd34ba" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/wb-l0-backend/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wb-l0-backend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wb-l0-backend/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wb-l0-backend/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wb-l0-backend/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wb-l0-backend/internal/api/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/emulator/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/cmd/emulator/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/migration/migrate.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/cmd/migration/migrate.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/producer/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/cmd/producer/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/cache/cache.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/internal/cache/cache.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/config/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/internal/config/database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/config/loadEnv.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/internal/config/loadEnv.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/kafka/consumer.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/internal/kafka/consumer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/kafka/producer.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/internal/kafka/producer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/delivery.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/models/delivery.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/item.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/models/item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/models/order.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/payment.go" beforeDir="false" afterPath="$PROJECT_DIR$/wb-l0-backend/models/payment.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.0.darwin-arm64" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;unkabas&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/unkabas/wb-L0.git&quot;,
+    &quot;accountId&quot;: &quot;9f9e83ac-a813-49eb-8fa3-fe26754ab22d&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="31HJR17TsRzSzl4Lm9IVnDeEzqt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build github.com/unkabas/wb-L0.executor": "Run",
+    "Go Build.go build l0 main.go.executor": "Run",
+    "Go Build.go build main.go.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.GoLinterPluginOnboarding": "true",
+    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/unkabas",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build main.go">
+    <configuration name="go build github.com/unkabas/wb-L0" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+      <module name="l0" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/unkabas/wb-L0" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="l0" />
+      <working_directory value="$PROJECT_DIR$/wb-l0-backend" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/wb-l0-backend/cmd/emulator/main.go" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.go build github.com/unkabas/wb-L0" />
+      <item itemvalue="Go Build.go build main.go" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build main.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-3b128438d3f6-07d2d2d66b1e-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.27812.54" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-GO-251.27812.54" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c549d32d-cd32-4132-b6b1-94d8f0bd34ba" name="Changes" comment="" />
+      <created>1755175052985</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1755175052985</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:react" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:tailwindcss" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:vite" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

@@ -58,6 +58,7 @@ func (c *Cache) Set(order models.Order) {
 		delete(c.data, oldOrderUID)
 		log.Printf("Removed oldest order from cache: %s\n", oldOrderUID)
 	}
+	log.Println("cache now:", c.data[order.OrderUID])
 }
 
 // возвращает заказ по order_uid, возвращает false, если не найден

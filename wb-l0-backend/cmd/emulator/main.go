@@ -14,7 +14,7 @@ import (
 const (
 	topic         = "order"
 	numMessages   = 10  // Количество сообщений
-	invalidChance = 0.2 // Шанс отправки невалидного JSON
+	invalidChance = 0.5 // Шанс отправки невалидного JSON
 )
 
 var address = []string{"localhost:9091", "localhost:9092", "localhost:9093"}
@@ -22,11 +22,11 @@ var address = []string{"localhost:9091", "localhost:9092", "localhost:9093"}
 func main() {
 	p, err := k.NewProducer(address)
 	if err != nil {
-		log.Fatalf("Failed to create producer: %v", err)
+		log.Fatalf("Ошибка создания продюсера: %v", err)
 	}
 	defer p.Close()
 
-	rand.Seed(time.Now().UnixNano())
+	rand.NewSource(time.Now().UnixNano())
 
 	for i := 0; i < numMessages; i++ {
 		var data []byte
@@ -43,36 +43,19 @@ func main() {
 
 		key := fmt.Sprintf("key-%d", i)
 		if err := p.Produce(string(data), topic, key); err != nil {
-			log.Printf("Failed to produce message: %v", err)
+			log.Printf("Ошибка отправки сообщения: %v", err)
 		} else {
-			log.Printf("Successfully produced message with key: %s\n", key)
+			log.Printf("Сообщение отправлено, ключ: %s, данные: %s", key, string(data))
 		}
 
 		time.Sleep(time.Second)
 	}
 }
 
-// генерирует разнообразный валидный заказ
+// generateValidOrder генерирует валидный заказ с одним товаром
 func generateValidOrder() models.Order {
 	faker := gofakeit.New(0)
 	orderUID := faker.UUID()
-	numItems := faker.Number(1, 3) // 1-3 товара
-	items := make([]models.Item, numItems)
-	for i := 0; i < numItems; i++ {
-		items[i] = models.Item{
-			ChrtID:      faker.Number(1000, 9999),
-			TrackNumber: faker.UUID(),
-			Price:       faker.Number(100, 1000),
-			Rid:         faker.UUID(),
-			Name:        faker.ProductName(),
-			Sale:        faker.Number(0, 50),
-			Size:        faker.Word(),
-			TotalPrice:  faker.Number(100, 1000),
-			NmID:        faker.Number(1000, 9999),
-			Brand:       faker.Company(),
-			Status:      faker.Number(100, 200),
-		}
-	}
 	return models.Order{
 		OrderUID:    orderUID,
 		TrackNumber: faker.UUID(),
@@ -98,7 +81,19 @@ func generateValidOrder() models.Order {
 			GoodsTotal:   faker.Number(100, 5000),
 			CustomFee:    faker.Number(0, 500),
 		},
-		Items:             items,
+		Items: models.Item{
+			ChrtID:      faker.Number(1000, 9999),
+			TrackNumber: faker.UUID(),
+			Price:       faker.Number(100, 1000),
+			Rid:         faker.UUID(),
+			Name:        faker.ProductName(),
+			Sale:        faker.Number(0, 50),
+			Size:        faker.Word(),
+			TotalPrice:  faker.Number(100, 1000),
+			NmID:        faker.Number(1000, 9999),
+			Brand:       faker.Company(),
+			Status:      faker.Number(100, 200),
+		},
 		Locale:            faker.LanguageAbbreviation(),
 		InternalSignature: "",
 		CustomerID:        faker.UUID(),

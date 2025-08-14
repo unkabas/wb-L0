@@ -3,10 +3,12 @@ package main
 import (
 	"flag"
 	"github.com/unkabas/wb-L0/cmd/migration"
+	"github.com/unkabas/wb-L0/internal/api"
 	"github.com/unkabas/wb-L0/internal/cache"
 	"github.com/unkabas/wb-L0/internal/config"
 	"github.com/unkabas/wb-L0/internal/kafka"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -53,6 +55,14 @@ func main() {
 		consumer.Start()
 	}()
 	defer consumer.Stop()
+
+	http.HandleFunc("/order/", api.OrderHandler(c, config.DB))
+	go func() {
+		log.Println("Listening port :8080...")
+		if err := http.ListenAndServe(":8080", nil); err != nil {
+			log.Printf("Server error: %v", err)
+		}
+	}()
 
 	//ждём сигнал завершения
 	sigChan := make(chan os.Signal, 1)

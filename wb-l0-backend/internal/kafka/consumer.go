@@ -108,9 +108,6 @@ func (c *Consumer) processMessage(data []byte) (err error) {
 	if order.Delivery.Name == "" || order.Delivery.Phone == "" {
 		return fmt.Errorf("invalid order: delivery name or phone is empty, order_uid: %s", order.OrderUID)
 	}
-	if len(order.Items) == 0 {
-		return fmt.Errorf("invalid order: no items, order_uid: %s", order.OrderUID)
-	}
 	if order.Payment.Transaction == "" {
 		return fmt.Errorf("invalid order: payment transaction is empty, order_uid: %s", order.OrderUID)
 	}
@@ -142,9 +139,6 @@ func (c *Consumer) processMessage(data []byte) (err error) {
 		if err := tx.Commit().Error; err != nil {
 			return fmt.Errorf("commit failed for order %s: %w", order.OrderUID, err)
 		}
-
-		log.Printf("Successfully saved order %s\n", order.OrderUID)
-		return nil
 
 		c.cache.Set(order)
 		log.Printf("Successfully saved order %s and added to cache\n", order.OrderUID)

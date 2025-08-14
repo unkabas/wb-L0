@@ -9,7 +9,7 @@ type Order struct {
 	Entry             string    `json:"entry"`
 	Delivery          Delivery  `gorm:"foreignKey:OrderID" json:"delivery"`
 	Payment           Payment   `gorm:"foreignKey:OrderID" json:"payment"`
-	Items             []Item    `gorm:"foreignKey:OrderID" json:"items"`
+	Items             Item      `gorm:"foreignKey:OrderID" json:"items"`
 	Locale            string    `json:"locale"`
 	InternalSignature string    `json:"internal_signature"`
 	CustomerID        string    `json:"customer_id"`
