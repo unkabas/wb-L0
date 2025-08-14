@@ -28,14 +28,20 @@ cd wb-l0
 3. Настроить бэкенд
 Настроить .env
 
-Зайди в папку бэкенда:cd wb-l0-backend
+Зайди в папку бэкенда:
+```
+cd wb-l0-backend
+```
 
-
-Создай файл .env с таким содержимым:DB_URL="host=хост user=юзер password=твой_пароль dbname=имя_базы port=5432 sslmode=disable"
+Создай файл .env с таким содержимым:
+DB_URL="host=хост user=юзер password=твой_пароль dbname=имя_базы port=5432 sslmode=disable"
 
 Запустить сервисы через Docker
 
-В папке wb-l0-backend выполни:docker-compose up -d
+В папке wb-l0-backend выполни:
+```
+docker-compose up -d
+```
 
 Это поднимет:
 3 брокера Kafka.
@@ -46,7 +52,10 @@ PostgreSQL.
 
 Запустить бэкенд
 
-Запусти сервер:go run main.go -m (для автомиграции)
+Запусти сервер:
+```
+go run main.go -m //(для автомиграции)
+```
 
 Сервер работает на http://localhost:8080.
 API GET /order/<order_uid> отдаёт заказ в JSON.
@@ -58,13 +67,18 @@ API GET /order/<order_uid> отдаёт заказ в JSON.
 Протестировать с продюсером или эмулятором
 
 Продюсер:
-Отправляет 3 валидных заказа в Kafka:go run cmd/producer/main.go
-
+Отправляет 3 валидных заказа в Kafka:
+```
+go run cmd/producer/main.go
+```
 
 
 
 Эмулятор:
-Генерит 10 заказов (половина валидные, половина мусор):go run cmd/emulator/main.go
+Генерит 10 заказов (половина валидные, половина мусор):
+```
+go run cmd/emulator/main.go
+```
 
 
 Валидные заказы сохраняются в базу и кэш.
@@ -75,15 +89,21 @@ API GET /order/<order_uid> отдаёт заказ в JSON.
 3. Запустить фронт
 
 Зайди в папку фронта:
+```
 cd wb-l0-front
+```
 
 
 Установи зависимости:
+```
 npm install
+```
 
 
 Запусти фронт:
+```
 npm run dev
+```
 
 
 Откроется на http://localhost:5173.
